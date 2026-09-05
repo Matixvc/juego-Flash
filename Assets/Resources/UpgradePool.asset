@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b9042716709b6e4bbec5465578156b1, type: 3}
+  m_Name: UpgradePool
+  m_EditorClassIdentifier:
+  cartasOfrecidas: 3
+  mejorasDisponibles:
+  - {fileID: 11400000, guid: 770097ebccf75d247b052b13d089a3d4, type: 2}
+  - {fileID: 11400000, guid: 9ae27f7df4a69f7469b2114b0b5befb0, type: 2}
+  - {fileID: 11400000, guid: 2d106b07f0ddf7841a9d16be56d6a408, type: 2}
+  - {fileID: 11400000, guid: 8d8423d69b13cb04d8bbef9324c6d44f, type: 2}
+  - {fileID: 11400000, guid: 01c803ac8c247e44ab3b7f714c700f9d, type: 2}
+  - {fileID: 11400000, guid: b0f3bad4528bc724fb4616ce90f16df3, type: 2}
+  - {fileID: 11400000, guid: 3af35279cdc0001458bcdebedea591e3, type: 2}
+  - {fileID: 11400000, guid: bf3d2aa0feb1ad348ad2a3c4f7a1bde1, type: 2}
+  - {fileID: 11400000, guid: fb0787af7ab92164e9eafd8f4d180617, type: 2}
+  permitirRepetir: 0

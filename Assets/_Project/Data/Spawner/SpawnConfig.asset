@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edc5550fc41f7bb5e0630d3d0ead0aa7, type: 3}
+  m_Name: SpawnConfig
+  m_EditorClassIdentifier: 
+  tiempoEntreSpawnsInicial: 2
+  tiempoEntreSpawnsMinimo: 0.3
+  reduccionTiempoPorMinuto: 0.25
+  enemigosPorOleadaInicial: 1
+  enemigosPorOleadaMaximo: 5
+  distanciaFueraDeCamara: 3
+  maxEnemigosActivos: 30
+  centroArena: {x: 0, y: 0}
+  tamanoArena: {x: 42, y: 24}
+  prefabEscarabajo: {fileID: 5211317825653995109, guid: 3dbe59a352fa6fa4083f62af1b082f1b, type: 3}
+  prefabJefe: {fileID: 7, guid: 27d31fffd04fdda4ca09ed0371de20a6, type: 3}
+  tiempoEntreJefes: 270
+  datosJefe: {fileID: 11400000, guid: 9868d121fe8be714d8683e290878b9fa, type: 2}
+  multiplicadorVidaPorTier: 0.35
+  multiplicadorVelocidadPorTier: 0.06
+  multiplicadorDanioPorTier: 0.1
+  bonusOleadaPorTier: 0.25

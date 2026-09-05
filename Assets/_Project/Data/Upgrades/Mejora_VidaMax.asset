@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6009d9b24c03b34d92d46c443053b30, type: 3}
+  m_Name: Mejora_VidaMax
+  m_EditorClassIdentifier:
+  nombreMejora: Vida Máxima +1
+  descripcion: Aumenta la vida máxima en 1.
+  icono: {fileID: 0}
+  raridad: 1
+  efectos:
+    - stat: VidaMaxima
+      esPlano: 1
+      valor: 1

@@ -1,0 +1,31 @@
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Oo]bj/
+[Bb]in/
+[Bb]in_tmp/
+
+# Unity-generated project files
+*.csproj
+*.sln
+*.slnx
+*.user
+*.userprefs
+*.pidb
+*.booproj
+
+# IDE and build artifacts
+.vs/
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local script dumps and temporary exports
+Contexto.txt

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 705998c2470bc28d63962005b5300a0b, type: 3}
+  m_Name: JefeData
+  m_EditorClassIdentifier: 
+  nombreEnemigo: Escarabajo Elite
+  sprite: {fileID: 0}
+  velocidadBase: 2.6
+  variacionVelocidad: 0.3
+  vidaMaxima: 12
+  danioContacto: 1
+  cooldownDanio: 0.6
+  radioDeteccion: 100
+  radioSeparacion: 1.4
+  fuerzaSeparacion: 4
+  expOtorgada: 12
+  expPorOrbe: 1
+  esJefe: 1
+  multiplicadorVida: 1
+  esenciaOtorgada: 1
+  expOrbesJefe: 12
