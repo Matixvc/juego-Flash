@@ -211,6 +211,14 @@ public class GameManager : MonoBehaviour
         Debug.Log("[GameManager] Fin de la run.");
     }
 
+    private void OnDestroy()
+    {
+        if (Instancia == this)
+        {
+            Instancia = null;
+        }
+    }
+
     /// <summary>
     /// Garantiza que siempre exista un GameManager aunque la escena no lo tenga.
     /// (Auto-creación legacy: GameBootstrap reemplaza esta lógica en runtime,

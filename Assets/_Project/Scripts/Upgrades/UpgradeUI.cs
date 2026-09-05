@@ -107,6 +107,7 @@ public class UpgradeUI : MonoBehaviour, IUpgradeSelector
         Image icono = iconoGO.AddComponent<Image>();
         icono.sprite = upgrade.Icono != null ? upgrade.Icono : RecursosUI.SpriteBlanco;
         icono.color = upgrade.Icono != null ? Color.white : new Color(0.6f, 0.6f, 0.65f, 0.5f);
+        icono.raycastTarget = false;
         RectTransform rtI = icono.GetComponent<RectTransform>();
         rtI.anchorMin = new Vector2(0.5f, 1f);
         rtI.anchorMax = new Vector2(0.5f, 1f);
@@ -124,6 +125,7 @@ public class UpgradeUI : MonoBehaviour, IUpgradeSelector
         txtNom.font = RecursosUI.FuenteUI;
         txtNom.color = Color.white;
         txtNom.alignment = TextAnchor.MiddleCenter;
+        txtNom.raycastTarget = false;
         txtNom.horizontalOverflow = HorizontalWrapMode.Wrap;
         RectTransform rtNom = txtNom.GetComponent<RectTransform>();
         rtNom.anchorMin = new Vector2(0f, 1f);
@@ -141,6 +143,7 @@ public class UpgradeUI : MonoBehaviour, IUpgradeSelector
         txtDesc.font = RecursosUI.FuenteUI;
         txtDesc.color = new Color(0.75f, 0.75f, 0.8f, 1f);
         txtDesc.alignment = TextAnchor.MiddleCenter;
+        txtDesc.raycastTarget = false;
         txtDesc.horizontalOverflow = HorizontalWrapMode.Wrap;
         txtDesc.verticalOverflow = VerticalWrapMode.Truncate;
         txtDesc.supportRichText = true;
@@ -158,6 +161,7 @@ public class UpgradeUI : MonoBehaviour, IUpgradeSelector
         txtRareza.fontSize = 10;
         txtRareza.fontStyle = FontStyle.Bold;
         txtRareza.font = RecursosUI.FuenteUI;
+        txtRareza.raycastTarget = false;
         switch (upgrade.RaridadMejora)
         {
             case UpgradeSO.Raridad.Comun:

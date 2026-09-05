@@ -123,7 +123,7 @@ public class UpgradeManager : MonoBehaviour
             return;
         }
 
-        List<UpgradeSO> elegidas = pool.ElegirMejoras(pool.CartasOfrecidas, mejorasTomadas);
+        List<UpgradeSO> elegidas = pool.ElegirMejoras(Mathf.Min(2, pool.CartasOfrecidas), mejorasTomadas);
         if (elegidas.Count == 0)
         {
             Debug.LogWarning("[UpgradeManager] Sin mejoras disponibles.");

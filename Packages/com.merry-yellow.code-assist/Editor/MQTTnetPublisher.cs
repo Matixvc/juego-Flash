@@ -951,7 +951,7 @@ namespace Meryel.UnityCodeAssist.Editor
             DelayedRequestUpdate = null;
 
             // let unity update the package, don't unzip it, to prevent file already in use and other issues
-            AssetDatabase.ImportPackage(requestUpdate.Path, requestUpdate.IsInteractive);
+            UnityEditor.AssetPackage.Package.Import(requestUpdate.Path, requestUpdate.IsInteractive);
         }
 
         void Synchronizer.Model.IProcessor.Process(Synchronizer.Model.RelayDocumentShow relayDocumentShow)

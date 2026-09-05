@@ -23,7 +23,16 @@ public class GameBootstrap : MonoBehaviour
             return;
         }
         Instancia = this;
+        SceneManager.sceneLoaded += AlCargarEscena;
 
+        AsegurarDatos();
+        AsegurarManagers();
+        AsegurarCanvasYHUD();
+        ConfigurarCamara();
+    }
+
+    private void AlCargarEscena(Scene escena, LoadSceneMode modo)
+    {
         AsegurarDatos();
         AsegurarManagers();
         AsegurarCanvasYHUD();
@@ -141,5 +150,11 @@ public class GameBootstrap : MonoBehaviour
         GameObject go = new GameObject("_GameBootstrap");
         go.AddComponent<GameBootstrap>();
         Object.DontDestroyOnLoad(go);
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= AlCargarEscena;
+        if (Instancia == this) Instancia = null;
     }
 }
