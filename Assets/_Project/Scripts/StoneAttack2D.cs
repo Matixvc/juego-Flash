@@ -26,6 +26,7 @@ public class StoneAttack2D : MonoBehaviour
     private ContactFilter2D filtroEnemigos;
     private HashSet<Enemy2D> enemigosGolpeadosEnDash;
     private bool puedeHacerPisoton = true;
+    private Transform _transform;
 
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class StoneAttack2D : MonoBehaviour
         stats = GetComponent<PlayerRuntimeStats>();
         bufferImpactos = new Collider2D[TamanoBuffer];
         enemigosGolpeadosEnDash = new HashSet<Enemy2D>();
+        _transform = transform;
 
         filtroEnemigos = new ContactFilter2D
         {
@@ -79,12 +81,12 @@ public class StoneAttack2D : MonoBehaviour
         }
 
         // Pequeño salto/escala cómica antes del golpe
-        Vector3 escalaOriginal = transform.localScale;
-        transform.localScale = escalaOriginal * 1.3f;
+        Vector3 escalaOriginal = _transform.localScale;
+        _transform.localScale = escalaOriginal * 1.3f;
 
         yield return new WaitForSeconds(0.08f);
 
-        transform.localScale = escalaOriginal;
+        _transform.localScale = escalaOriginal;
         GenerarOndaDeChoque();
 
         yield return new WaitForSeconds(stats.CooldownPisoton);
@@ -102,7 +104,7 @@ public class StoneAttack2D : MonoBehaviour
         // evita la sensación de "a veces pega, a veces no" en enemigos al borde.
         float radioReal = stats.RadioOndaChoque + 0.3f;
         int cantidad = Physics2D.OverlapCircle(
-            transform.position, radioReal, filtroEnemigos, bufferImpactos);
+            _transform.position, radioReal, filtroEnemigos, bufferImpactos);
 
         bool golpeoAlgo = false;
 
@@ -120,8 +122,8 @@ public class StoneAttack2D : MonoBehaviour
         }
 
         // VFX: anillo expansivo (radio REAL de impacto para feedback visual preciso) + chispas + tremor (+ hit-stop si conectó)
-        VfxUtil.AnilloChoque(transform.position, radioReal, new Color(1f, 0.85f, 0.45f), 0.35f);
-        VfxUtil.Chispas(transform.position, new Color(0.85f, 0.65f, 0.4f), golpeoAlgo ? 10 : 5);
+        VfxUtil.AnilloChoque(_transform.position, radioReal, new Color(1f, 0.85f, 0.45f), 0.35f);
+        VfxUtil.Chispas(_transform.position, new Color(0.85f, 0.65f, 0.4f), golpeoAlgo ? 10 : 5);
         CamaraTremor.Agregar(golpeoAlgo ? 0.5f : 0.25f);
         if (golpeoAlgo)
         {
@@ -137,7 +139,7 @@ public class StoneAttack2D : MonoBehaviour
         }
 
         int cantidad = Physics2D.OverlapCircle(
-            transform.position, stats.RadioImpactoDash, filtroEnemigos, bufferImpactos);
+            _transform.position, stats.RadioImpactoDash, filtroEnemigos, bufferImpactos);
 
         for (int i = 0; i < cantidad; i++)
         {

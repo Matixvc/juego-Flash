@@ -33,7 +33,7 @@ public class Enemy2D : MonoBehaviour
     [Header("Recompensa (drops)")]
     [SerializeField] private int expTotal = 3;
     [SerializeField] private int expPorOrbe = 1;
-    [SerializeField] private GameObject prefabOrbeExp;
+    [SerializeField, Tooltip("Obsoleto: el sistema usa pooling automático. Mantenido por compatibilidad.")] private GameObject prefabOrbeExp;
 
     protected PlayerController2D jugador;
     protected Rigidbody2D rb;
@@ -188,8 +188,12 @@ public class Enemy2D : MonoBehaviour
 
     private Vector2 CalcularSeparacion()
     {
+        // Optimización: limitar el número de enemigos a procesar para evitar cálculos excesivos
+        const int MAX_ENEMIGOS_SEPARACION = 8;
+
         Collider2D[] cercanos = Physics2D.OverlapCircleAll(rb.position, radioSeparacion);
         Vector2 separacion = Vector2.zero;
+        int procesados = 0;
 
         foreach (Collider2D col in cercanos)
         {
@@ -205,6 +209,10 @@ public class Enemy2D : MonoBehaviour
                     alejar = Random.insideUnitCircle;
                 }
                 separacion += (alejar / d) * (fuerzaSeparacion / Mathf.Max(0.1f, d));
+                procesados++;
+
+                // Limitar el número de enemigos procesados para evitar lag con muchos enemigos
+                if (procesados >= MAX_ENEMIGOS_SEPARACION) break;
             }
         }
 
@@ -296,7 +304,7 @@ public class Enemy2D : MonoBehaviour
 
     private void SoltarRecompensas()
     {
-        if (prefabOrbeExp == null || expTotal <= 0) return;
+        if (expTotal <= 0) return;
 
         int porOrbe = Mathf.Max(1, expPorOrbe);
         int cantidadOrbes = Mathf.CeilToInt(Mathf.Max(1, expTotal) / (float)porOrbe);
@@ -304,12 +312,7 @@ public class Enemy2D : MonoBehaviour
         for (int i = 0; i < cantidadOrbes; i++)
         {
             Vector2 offset = Random.insideUnitCircle * 0.5f;
-            GameObject orbe = Instantiate(prefabOrbeExp, (Vector2)transform.position + offset, Quaternion.identity);
-
-            if (orbe != null && orbe.TryGetComponent(out ExpOrbe expOrbe))
-            {
-                expOrbe.ConfigurarValor(porOrbe);
-            }
+            GameObject orbe = ExpOrbe.ObtenerOrbe((Vector2)transform.position + offset, porOrbe);
         }
     }
 
@@ -319,7 +322,7 @@ public class Enemy2D : MonoBehaviour
         if (run != null)
         {
             // Solo cuenta de kills; la exp viene de los orbes recolectados.
-            run.RegistrarEnemigoEliminado(0);
+            run.RegistrarEnemigoEliminado();
         }
 
         // Robo de vida (upgrade Leech): curar al jugador al matar

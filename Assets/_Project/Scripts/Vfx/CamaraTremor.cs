@@ -13,7 +13,11 @@ public class CamaraTremor : MonoBehaviour
 
     public static void Agregar(float intensidad)
     {
-        if (_instancia == null) return;
+        if (_instancia == null)
+        {
+            Debug.LogWarning("[CamaraTremor] Intento de agregar tremor sin instancia instalada. Llama a InstalarEn() primero.");
+            return;
+        }
         _instancia._trauma = Mathf.Clamp01(_instancia._trauma + intensidad);
     }
 

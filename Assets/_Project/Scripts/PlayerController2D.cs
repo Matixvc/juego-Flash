@@ -218,6 +218,12 @@ public class PlayerController2D : MonoBehaviour
             return false;
         }
 
+        // Validar que no estemos en pausa o hit-stop cuando se recibe daño
+        if (Time.timeScale <= 0f)
+        {
+            return false;
+        }
+
         if (Time.time < _invulnerableHasta)
         {
             return false;

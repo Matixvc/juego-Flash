@@ -313,21 +313,49 @@ public class HUDManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (jugador != null)
+        DesuscribirEventos();
+    }
+
+    private void DesuscribirEventos()
+    {
+        try
         {
-            jugador.AlCambiarVida -= ActualizarVida;
-            jugador.AlMorir -= MostrarGameOver;
+            if (jugador != null)
+            {
+                jugador.AlCambiarVida -= ActualizarVida;
+                jugador.AlMorir -= MostrarGameOver;
+            }
         }
-        if (runProgress != null)
+        catch (System.Exception e)
         {
-            runProgress.AlCambiarExp -= ActualizarXP;
-            runProgress.AlSubirNivel -= OnSubirNivel;
-            runProgress.AlSumarEsencia -= ActualizarEsencia;
+            Debug.LogWarning($"[HUDManager] Error al desuscribir eventos del jugador: {e.Message}");
         }
-        if (GameManager.Instancia != null)
+
+        try
         {
-            GameManager.Instancia.AlCambiarEstado -= OnCambiarEstado;
-            GameManager.Instancia.AlIniciarEventoJefe -= OnJefeIniciado;
+            if (runProgress != null)
+            {
+                runProgress.AlCambiarExp -= ActualizarXP;
+                runProgress.AlSubirNivel -= OnSubirNivel;
+                runProgress.AlSumarEsencia -= ActualizarEsencia;
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning($"[HUDManager] Error al desuscribir eventos del runProgress: {e.Message}");
+        }
+
+        try
+        {
+            if (GameManager.Instancia != null)
+            {
+                GameManager.Instancia.AlCambiarEstado -= OnCambiarEstado;
+                GameManager.Instancia.AlIniciarEventoJefe -= OnJefeIniciado;
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning($"[HUDManager] Error al desuscribir eventos del GameManager: {e.Message}");
         }
     }
 }

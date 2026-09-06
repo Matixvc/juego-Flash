@@ -84,10 +84,9 @@ public class RunProgressSO : ScriptableObject
         AlCambiarExp?.Invoke();
     }
 
-    public void RegistrarEnemigoEliminado(int expOtorgada)
+    public void RegistrarEnemigoEliminado()
     {
         enemigosEliminados++;
-        SumarExp(expOtorgada);
     }
 
     public void RegistrarJefeDerrotado()

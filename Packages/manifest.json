@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.ivanmurzak.unity.mcp": "file:C:/Users/matia/Downloads/Unity-MCP-main/Unity-MCP-Plugin/Packages/com.ivanmurzak.unity.mcp",
     "com.unity.2d.animation": "16.0.0",
     "com.unity.2d.aseprite": "6.0.0",
     "com.unity.2d.psdimporter": "15.0.0",
@@ -55,5 +56,15 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  }
+  },
+  "scopedRegistries": [
+    {
+      "name": "OpenUPM",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "extensions.unity",
+        "com.ivanmurzak"
+      ]
+    }
+  ]
 }

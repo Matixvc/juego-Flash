@@ -172,7 +172,28 @@ public class UpgradeManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (_suscrito && GameManager.Instancia != null && GameManager.Instancia.RunProgress != null)
-            GameManager.Instancia.RunProgress.AlSubirNivel -= OnSubirNivel;
+        DesuscribirEventos();
+    }
+
+    private void DesuscribirEventos()
+    {
+        if (_suscrito)
+        {
+            try
+            {
+                if (GameManager.Instancia != null && GameManager.Instancia.RunProgress != null)
+                {
+                    GameManager.Instancia.RunProgress.AlSubirNivel -= OnSubirNivel;
+                }
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning($"[UpgradeManager] Error al desuscribir eventos: {e.Message}");
+            }
+            finally
+            {
+                _suscrito = false;
+            }
+        }
     }
 }

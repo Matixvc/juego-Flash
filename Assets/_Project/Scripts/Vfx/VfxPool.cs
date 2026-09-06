@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Pool de VFX para evitar Instantiate/Destroy constante.
@@ -11,6 +12,7 @@ public static class VfxPool
     private static ObjectPool<GameObject> _poolChispas;
 
     private static bool _inicializado;
+    private static bool _sceneCleanupRegistrado;
 
     public static void Inicializar()
     {
@@ -39,6 +41,30 @@ public static class VfxPool
             defaultCapacity: 20,
             maxSize: 50
         );
+
+        // Registrar limpieza al cambiar de escena
+        if (!_sceneCleanupRegistrado)
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            _sceneCleanupRegistrado = true;
+        }
+    }
+
+    private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        LimpiarPools();
+    }
+
+    private static void LimpiarPools()
+    {
+        if (_poolAnillos != null)
+        {
+            _poolAnillos.Clear();
+        }
+        if (_poolChispas != null)
+        {
+            _poolChispas.Clear();
+        }
     }
 
     private static GameObject CrearAnillo()
